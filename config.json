@@ -1,5 +1,6 @@
 {
   "secret": "TendoServerProyect",
-  "db-local": "",
-  "db-remote": ""
+  "connectionString": "",
+  "connectionStringLocal": "mongodb://localhost:27017/tienda",
+  "logsPath": "logs/"
 }

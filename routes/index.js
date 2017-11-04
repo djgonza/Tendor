@@ -2,11 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 //Rutas Autentificacion
-router.use('/autentificacion', require('routes/autenticacion/index'));
+router.use('/autentificacion', require('routes/autenticacion'));
 //Rutas Usuarios
-router.use('/usuarios', require('routes/usuarios/index'));
-//Rutas Logger
-router.use('/logger', require('routes/logger/index'));
+router.use('/usuarios', require('routes/usuarios'));
 
 
 module.exports = router;
