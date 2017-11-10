@@ -3,7 +3,7 @@ var config = require('config.json');
 var Debugger = require('middleware/Debugger');
 var colors = require('colors');
 
-module.exports = (fecha, status, msj, ms) => {
+module.exports = (fecha, status, rute, ms) => {
 
 	//Si no existe creamos el directorio
 	if (!fs.existsSync(config.logsPath)) {
@@ -11,11 +11,11 @@ module.exports = (fecha, status, msj, ms) => {
 	}
 
 	//Escribimos en el fichero
-	var ruta = config.logsPath + fecha.split(' ')[0];
+	var ruta = config.logsPath + fecha.split(' ')[0] + ".log";
 	var contenido = {
 		"fecha": fecha,
 		"status": status,
-		"msj": msj,
+		"rute": rute,
 		"time": ('+' + ms + 'ms')
 	}
 

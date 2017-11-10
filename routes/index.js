@@ -5,6 +5,8 @@ var router = express.Router();
 router.use('/autentificacion', require('routes/autenticacion'));
 //Rutas Usuarios
 router.use('/usuarios', require('routes/usuarios'));
+//Rutas Gestion logs
+router.use('/logs', require('routes/logger'));
 
 
 module.exports = router;

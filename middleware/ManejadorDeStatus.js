@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
 	}
 
 	var executeTime = Date.now() - req.start;
-	var fecha = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+	var fecha = require('middleware/fechas').fechaActual();
 
 	//Capturador para debuguer y loguer
 	switch (res.statusCode) {

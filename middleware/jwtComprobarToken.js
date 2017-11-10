@@ -13,7 +13,7 @@ module.exports = expressJwt({
 			return req.query.oauth_token;
 		}
 
-		Debugger('Token'.green, '¡Falta Token!');
+		Debugger('¡Falta Token!'.red);
 
 		return null;
 
