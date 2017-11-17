@@ -1,52 +1,46 @@
 require('rootpath')();
-var colors = require('colors');
-var express = require('express');
-var cors = require('cors');
-var bodyParser = require('body-parser');
+const http = require('http');
+const https = require('https');
+const bodyParser = require('body-parser');
+const express = require('express');
+const errores = require('./modulos/errores');
+const rutas = require('./rutas');
+const db = require('./modulos/mongodb');
+const app = express();
 
-var http = require('http');
+//Declaramos el puerto
+process.env.PORT = process.env.PORT || 3000;
 
-var Debugger = require('middleware/Debugger');
-
-var app = express();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
-
-debugger;
-
-//Manejador de tiempos de peticiones
-app.use(require('middleware/SetTiempoEjecucionPeticion'));
-
-//Manejador de rutas
-app.use('/', require('routes'));
-
-//Control de status para debuguer y loguer
-app.use(require('middleware/ManejadorDeStatus'));
-
-//Control de errores generales
-app.use(require('middleware/ManejadorDeErrores'));
-
-//Cierre de la aplicacion
-/*process.on('exit', (code) => {
-  console.log('About to exit with code:', code);
+//Calculo de tiempos de ejecucion
+app.use((req, res, next) => {
+    req.timeInicioPeticion = Date.now();
+    next();
 });
 
-//Excepciones no controladas de la aplicacion
-process.on('uncaughtException', (err) => {
-  Debugger('Excepcion no controlada'.red, err);
-  process.exit(1);
+//parseo de peticiones
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
+//Rutas
+app.use(rutas);
+
+//Error 404
+app.use(errores.noEncontrado);
+
+//Creacion e inicio del servicio
+http.createServer(app).listen(process.env.PORT, () => {
+    console.log("Servicio corriendo en el puerto ", process.env.PORT);
+    //Iniciamos la conecion con la db
+    db.connect();
+});
+
+//Creacion e inicio del servicio seguro
+/*https.createServer(app).listen(process.env.PORT, () => {
+    console.log("Servicio corriendo en el puerto ", process.env.PORT);
 });*/
 
-//Iniciamos la aplicacion
-var port = require('middleware/DefinirPuertos')();
-app.listen(port, () => {
-
-  Debugger('app.js =>'.green, 'Servidor escuchando en el puerto: '.grey, port.green);
-  //console.log('Servidor escuchando en el puerto: '.grey, port.green);
-
-  //Conexion a la DB
-  require('middleware/ConexionDB')();
-
+process.on('uncaughtException', (err) => {
+    process.exit(1);
 });

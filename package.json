@@ -1,31 +1,20 @@
 {
-  "name": "tendorserver",
+  "name": "tendor",
   "version": "0.0.0",
-  "description": "Servidor de la aplicacion Tendor",
-  "author": "David Jimenez Gonzalez",
-  "license": "ISC",
-  "homepage": "https://github.com/djgonza/TendoServer#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/djgonza/TendoServer.git"
-  },
-  "private": true,
-  "bugs": {
-    "url": "https://github.com/djgonza/TendoServer/issues"
-  },
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "debug": "DEBUG=App PORT=3000 npm start"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
+  "author": "David jimenez Gonzalez",
+  "license": "ISC",
   "dependencies": {
-    "body-parser": "~1.18.2",
-    "colors": "^1.1.2",
-    "cors": "^2.8.1",
-    "debug": "~2.6.9",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "express-jwt": "^3.0.1",
     "jsonwebtoken": "^5.0.2",
-    "mongoose": "^4.13.0",
+    "mongoose": "^4.13.1",
     "q": "^1.5.1",
     "rootpath": "^0.1.2"
   }

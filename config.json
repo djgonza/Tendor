@@ -1,13 +1,6 @@
 {
-  "secret": "TendoServerProyect",
-  "connectionString": "",
-  "connectionStringLocal": "mongodb://localhost:27017/Tendor",
-  "logsPath": "logs/",
-  "roles": {
-  	"admin": "ADMINISTRADOR",
-  	"usuario": "USUARIO"
-  },
-  "permisos": {
-  	"leerLogs": "LEER_LOGS"
-  }
+    "connectionString": "",
+    "connectionStringLocal": "mongodb://localhost:27017/Tendor",
+    "jwtSecret": "TendorService",
+    "rutaCarpetaLogs": "logs/"
 }
