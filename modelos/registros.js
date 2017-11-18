@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-module.exports = mongoose.model('Roles', new Schema({
+module.exports = mongoose.model('Registros', new Schema({
 
-    nombre: {
-        type: String,
+    campo: {
+        type: Schema.Types.ObjectId,
+        ref: 'Campos',
         required: true
     },
-    creadoPor: {
-        type: Schema.Types.ObjectId,
-        ref: 'Usuarios',
+    valor: {
+        type: Schema.Types.Mixed,
         required: true
     },
     fechaCreacion: {

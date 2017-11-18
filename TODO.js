@@ -1,9 +1,4 @@
 //TODOS:
 
-// JWT √
-// Permisos √
-// Arreglar rutas de logger y ruta traer logs √
-// Terminar de leer los logs √
-
-// Crear ruta añadir registro
-// Crear ruta sacar balance por fechas
+//Revisar logs de todas las rutas porque falla
+//Acabar ruta registros

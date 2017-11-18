@@ -1,23 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-module.exports = mongoose.model('Permisos', new Schema({
+module.exports = mongoose.model('Campos', new Schema({
 
-    accion: {
+    nombre: {
         type: String,
         required: true
     },
-    permiso: {
-        type: Boolean,
-        required: true
-    },
-    roles: {
-        type: Array,
-        required: true
-    },
-    creadoPor: {
+    tipoValor: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuarios',
+        ref: 'TipoValores',
+        required: true
+    },
+    documento: {
+        type: Schema.Types.ObjectId,
+        ref: 'Documentos',
         required: true
     },
     fechaCreacion: {

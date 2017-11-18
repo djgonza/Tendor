@@ -2,7 +2,7 @@ const Q = require('q');
 const mongoose = require('mongoose');
 const PermisosModelo = require('../../modelos/permisos');
 
-module.exports = (permisoId) => {
+module.exports = (permisoId, accion) => {
 
     const deferred = Q.defer();
 
