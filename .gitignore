@@ -7,5 +7,5 @@ npm-debug.log
 # Logs
 logs
 
-# VS Code
-.vscode/
+# Folder Hidden
+.*
