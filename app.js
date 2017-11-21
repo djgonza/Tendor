@@ -1,12 +1,16 @@
 require('rootpath')();
 const http = require('http');
 const https = require('https');
+const cors = require('cors')
 const bodyParser = require('body-parser');
 const express = require('express');
 const errores = require('./modulos/errores');
 const rutas = require('./rutas');
 const db = require('./modulos/mongodb');
 const app = express();
+
+//Cors --Eliminar en pro
+app.use(cors());
 
 //Declaramos el puerto
 process.env.PORT = process.env.PORT || 3000;
