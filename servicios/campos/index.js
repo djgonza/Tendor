@@ -1,6 +1,7 @@
 const Campos = {
     crearCampo: require('./crearCampo'),
-    comprobarExisteCampoEnDocumento: require('./comprobarExisteCampoEnDocumento')
+    comprobarExisteCampoEnDocumento: require('./comprobarExisteCampoEnDocumento'),
+    leerCamposDeUnDocumento: require('./leerCamposDeUnDocumento')
 }
 
 module.exports = Campos;

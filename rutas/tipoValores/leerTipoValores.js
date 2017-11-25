@@ -1,11 +1,10 @@
-const DocumentosService = require('./../../servicios/documentos');
-const CamposService = require('./../../servicios/campos');
+const TipoValoresModelo = require('./../../modelos/tipoValores');
 
 module.exports = (req, res) => {
-
-    DocumentosService.leerTodosLosDocumentos(req.token._id)
-    .then(documentos => {
-        res.send(documentos);
+    
+    TipoValoresModelo.find()
+    .then(tipoValores => {
+        res.send(tipoValores);
     })
     .catch(error => {
         //Mejorar!!!!!!!!!!!!!
