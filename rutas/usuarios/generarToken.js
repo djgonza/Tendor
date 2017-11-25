@@ -35,7 +35,7 @@ module.exports = (req, res, next) => {
         //Token Generado
         .then (token => {
             console.log(token);
-            res.send({token: token});
+            res.send({cadena: token});
             logger(req.timeInicioPeticion, res.status, req.method, req.path, token);
         })
         //Capturamos errores generales
