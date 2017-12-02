@@ -4,6 +4,7 @@ const CamposService = require('./../../servicios/campos');
 module.exports = (req, res) => {
 
     DocumentosService.leerTodosLosDocumentos(req.token._id)
+        .sort([['fechaCreacion', '-1']])
     .then(documentos => {
         res.send(documentos);
     })
