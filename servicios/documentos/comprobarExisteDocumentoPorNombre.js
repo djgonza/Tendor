@@ -1,7 +1,7 @@
 const DocumentosModelo = require('./../../modelos/documentos');
 
-module.exports = (nombre) => {
+module.exports = (nombre, usuario) => {
 
-    return DocumentosModelo.findOne({nombre: nombre});
+    return DocumentosModelo.findOne({ nombre: nombre, usuario: usuario});
 
 } 

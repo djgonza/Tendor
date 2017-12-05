@@ -1,21 +1,18 @@
 const RegistrosService = require('./../../servicios/registros');
 const DocumentosService = require('./../../servicios/documentos');
 
-
-//TODO: validar datos de req
 module.exports = (req, res) => {
 
     //Validacion
-    if (!req.body.registro) {
+    if (!req.body.documento) {
         res.status(400).send({
             error: "¡Faltan Parametros!"
         });
         return;
     }
 
-    let registro = req.body.registro;
 
-    DocumentosService.comprobarExisteDocumentoPorId(registro.documento)
+    DocumentosService.comprobarExisteDocumentoPorId(req.body.documento)
         .then(documento => {
 
             if (!documento) {
@@ -28,27 +25,12 @@ module.exports = (req, res) => {
 
         })
         .then(documento => {
-            //Parseamos los datos
-            let campos = new Array();
-            registro.campos.map(campo => {
-                let nuevoCampo = {
-                    campo: campo.campo,
-                    valor: campo.valor
-                }
-                campos.push(nuevoCampo);
-            });
-            return campos;
+            let skip = req.body.skip ? req.body.skip : 0;
+            let limit = req.body.limit ? req.body.limit : 20;
+            return RegistrosService.buscarRegistrosPorDocumento(documento._id, skip, limit)
         })
-        .then(campos => {
-
-            registro.campos = campos;
-            registro.usuario = req.token._id
-
-            return RegistrosService.crearRegistro(registro);
-
-        })
-        .then(nuevoRegistro => {
-            res.send(nuevoRegistro);
+        .then(registros => {
+            res.send(registros);
         })
         .catch(error => {
             //Mejorar!!!!!!!!!!!!!

@@ -28,27 +28,19 @@ module.exports = (req, res) => {
 
         })
         .then(documento => {
-            //Parseamos los datos
-            let campos = new Array();
-            registro.campos.map(campo => {
-                let nuevoCampo = {
-                    campo: campo.campo,
-                    valor: campo.valor
-                }
-                campos.push(nuevoCampo);
-            });
-            return campos;
+            //Buscamos el registro
+            return RegistrosService.buscarRegistroPorId(registro._id);
         })
-        .then(campos => {
+        .then(registroDB => {
 
-            registro.campos = campos;
-            registro.usuario = req.token._id
+            registroDB.set({ eliminado: registro.eliminado ? true : false });
+            registroDB.set({ campos: registro.campos });
 
-            return RegistrosService.crearRegistro(registro);
+            return registroDB.save();
 
         })
-        .then(nuevoRegistro => {
-            res.send(nuevoRegistro);
+        .then(registroActualizado => {
+            res.send(registroActualizado);
         })
         .catch(error => {
             //Mejorar!!!!!!!!!!!!!

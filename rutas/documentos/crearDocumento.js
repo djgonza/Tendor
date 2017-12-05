@@ -7,12 +7,11 @@ module.exports = (req, res) => {
         res.status(400).send({
             error: "¡Faltan Parametros!"
         });
-        logger(req.timeInicioPeticion, 400, req.method, req.path, "¡Faltan Parametros!");
         return;
     }
 
     //Comprobamos que no existe el documento
-    DocumentosService.comprobarExisteDocumentoPorNombre(req.body.nombre)
+    DocumentosService.comprobarExisteDocumentoPorNombre(req.body.nombre, req.token._id)
         .then(documento => {
             if (documento)  {
                 var error = new Error("Documento ya existente");
@@ -41,10 +40,9 @@ module.exports = (req, res) => {
             if(error.status) {
                 res.status(error.status);
                 res.send(error.message);
-                logger(req.timeInicioPeticion, res.status, req.method, req.path, error.message);
                 return;
             }
-            res.send({});
+            res.status(500).send({ message: "Error en el servidor" });
 
         });
 
