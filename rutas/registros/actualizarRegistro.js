@@ -34,7 +34,7 @@ module.exports = (req, res) => {
         .then(registroDB => {
 
             registroDB.set({ eliminado: registro.eliminado ? true : false });
-            registroDB.set({ campos: registro.campos });
+            registroDB.set({ valores: registro.valores });
 
             return registroDB.save();
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const campo = new Schema({
+const valor = new Schema({
     campo: {
         type: Schema.Types.ObjectId,
         ref: 'Campo',
@@ -9,7 +9,7 @@ const campo = new Schema({
     },
     valor: {
         type: Schema.Types.Mixed,
-        required: true
+        default: null
     }
 });
 
@@ -20,8 +20,8 @@ module.exports = mongoose.model('Registros', new Schema({
         ref: 'Documento',
         required: true
     },
-    campos: {
-        type: [campo],
+    valores: {
+        type: [valor],
         required: true
     },
     usuario: {
@@ -31,7 +31,6 @@ module.exports = mongoose.model('Registros', new Schema({
     },
     fechaCreacion: {
         type: Date,
-        required: true,
         default: Date.now
     },
     eliminado: {

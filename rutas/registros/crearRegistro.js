@@ -29,19 +29,19 @@ module.exports = (req, res) => {
         })
         .then(documento => {
             //Parseamos los datos
-            let campos = new Array();
-            registro.campos.map(campo => {
-                let nuevoCampo = {
+            let valores = new Array();
+            registro.valores.map(campo => {
+                let nuevoValor = {
                     campo: campo.campo,
                     valor: campo.valor
                 }
-                campos.push(nuevoCampo);
+                valores.push(nuevoValor);
             });
-            return campos;
+            return valores;
         })
-        .then(campos => {
+        .then(valores => {
 
-            registro.campos = campos;
+            registro.valores = valores;
             registro.usuario = req.token._id
 
             return RegistrosService.crearRegistro(registro);

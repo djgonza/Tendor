@@ -35,7 +35,7 @@ module.exports = (req, res, next) => {
 
             //Definimos el rol
             if (req.body.rol) {
-                datosUsuario.rol = rol;
+                datosUsuario.rol = req.body.rol;
             } else {
 
                 //Buscamos el rol de usuario
@@ -48,11 +48,12 @@ module.exports = (req, res, next) => {
                             throw error;
                         }
                         datosUsuario.rol = rolUsuario.id;
-                        return datosUsuario;
 
                     });
 
             }
+
+            return datosUsuario;
 
         })
         .then((datosUsuario) => {

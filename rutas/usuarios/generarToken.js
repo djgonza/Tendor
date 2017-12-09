@@ -8,9 +8,8 @@ module.exports = (req, res, next) => {
 
     //Comprovamos que estan los parametros necesarios
     if (!req.body.email || !req.body.secret) {
-        res.status(400).send({
-            error: "¡Faltan Parametros!"
-        });
+        let error = new Error("¡Faltan Parametros!");
+        res.status(400).send(new Error("¡Faltan Parametros!"));
         logger(req.timeInicioPeticion, res.status || 500, req.method, req.path, "¡Faltan Parametros!");
         return;
     }
@@ -43,9 +42,7 @@ module.exports = (req, res, next) => {
 
             console.log(error);
             error.status ? res.status(error.status) : res.status(500);
-            res.send({
-                error: error.message
-            });
+            res.send(error);
             logger(req.timeInicioPeticion, res.status, req.method, req.path, error.message);
 
 
