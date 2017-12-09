@@ -5,7 +5,7 @@ node_modules
 npm-debug.log
 
 # Logs
-logs
+logs-server/*
 
 # Folder Hidden
 .*
