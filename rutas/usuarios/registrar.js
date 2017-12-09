@@ -48,7 +48,7 @@ module.exports = (req, res, next) => {
                             throw error;
                         }
                         datosUsuario.rol = rolUsuario.id;
-
+                        return datosUsuario;
                     });
 
             }
