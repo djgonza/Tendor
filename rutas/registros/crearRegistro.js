@@ -28,24 +28,8 @@ module.exports = (req, res) => {
 
         })
         .then(documento => {
-            //Parseamos los datos
-            let valores = new Array();
-            registro.valores.map(campo => {
-                let nuevoValor = {
-                    campo: campo.campo,
-                    valor: campo.valor
-                }
-                valores.push(nuevoValor);
-            });
-            return valores;
-        })
-        .then(valores => {
-
-            registro.valores = valores;
             registro.usuario = req.token._id
-
             return RegistrosService.crearRegistro(registro);
-
         })
         .then(nuevoRegistro => {
             res.send(nuevoRegistro);
